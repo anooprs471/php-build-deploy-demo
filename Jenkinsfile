@@ -23,7 +23,7 @@ pipeline {
     stage('Build-Image') {
       steps {
         sh '''
-        pack build phppot-event --path . --buildpack paketo-buildpacks/php --builder paketobuildpacks/builder:full
+        pack build anooprs471/phppot-event:'''${BUILD_NUMBER}''' --path . --buildpack paketo-buildpacks/php --builder paketobuildpacks/builder:full
         '''
       }
     }
