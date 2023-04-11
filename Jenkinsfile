@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Fetch') {
       steps {
-        git(branch: 'main', url: 'https://github.com/anooprs471/flask-calculator.git')
+        git(branch: 'main', url: 'https://github.com/anooprs471/php-build-deploy-demo.git')
       }
     }
 
@@ -23,7 +23,7 @@ pipeline {
     stage('Build-Image') {
       steps {
         sh '''
-        pack build anooprs471/test-flask-calculator:${BUILD_NUMBER} --path . --builder paketobuildpacks/builder:base
+        pack build phppot-event --path . --buildpack paketo-buildpacks/php --builder paketobuildpacks/builder:full
         '''
       }
     }
@@ -31,7 +31,7 @@ pipeline {
     stage('docker push') {
 		steps{
 			sh(script: """
-            docker push anooprs471/test-flask-calculator:${BUILD_NUMBER}
+            docker push anooprs471/phppot-event:${BUILD_NUMBER}
 			""")
 		}
     }
