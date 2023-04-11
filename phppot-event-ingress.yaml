@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: event-web-ingress
+  namespace: staging
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: home-grp
+      #alb.ingress.kubernetes.io/group.order: "1"
+    #alb.ingress.kubernetes.io/subnets: subnet-0f37ed79ce205c830, subnet-0f182d61d55178219, subnet-00358cfac04c4d7d9
+    #alb.ingress.kubernetes.io/security-groups: sg-08a1914be9d711c44
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: event-web
+            port:
+              number: 80

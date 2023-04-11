@@ -1,0 +1,7 @@
+<?php
+$conn = mysqli_connect("docker_mysql", "root", "sqlpass", "full_calendar");
+
+if (! $conn) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+?>
