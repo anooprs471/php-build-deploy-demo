@@ -22,17 +22,12 @@ pipeline {
 
     stage('Build-Image') {
       steps {
-        sh '''
-        pack build anooprs471/phppot-event:'''${BUILD_NUMBER}''' --path . --buildpack paketo-buildpacks/php --builder paketobuildpacks/builder:full
-        '''
-      }
+        sh "pack build anooprs471/phppot-event:${BUILD_NUMBER} --path . --buildpack paketo-buildpacks/php --builder paketobuildpacks/builder:full"}
     }
 	
     stage('docker push') {
 		steps{
-			sh(script: """
-            docker push anooprs471/phppot-event:${BUILD_NUMBER}
-			""")
+			sh "docker push anooprs471/phppot-event:${BUILD_NUMBER}"
 		}
     }
 
